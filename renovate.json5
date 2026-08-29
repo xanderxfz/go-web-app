@@ -1,0 +1,66 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "mode": "onboarding",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    "schedule:weekly", // dependency update PR on monday, vulnerabilityAlerts bypasses this
+  ],
+  "configMigration": true,
+  "enabledManagers": ["github-actions", "gomod", "npm", "dockerfile"],
+  "branchPrefix": "renovate/",
+  "separateMajorMinor": false, // include major updates in group PRs
+  "minimumReleaseAge": "5 days",
+  "semanticCommits": "enabled",
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "semanticCommitType": "fix", // overrides packageRules
+  },
+  "docker": {
+    "fileMatch": ["(^|/)Dockerfile$"],
+    "pinDigests": true
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["*"],
+      "groupName": "dependencies", // single weekly PR for all dependency updates
+      "semanticCommitType": "chore", // dep updates are rarely fixes for gitea
+    },
+    {
+      "matchManagers": ["gomod"],
+      "postUpdateOptions": ["gomodUpdateImportPaths"],
+    },
+    {
+      "matchManagers": ["gomod"],
+      "matchDepNames": ["go"],
+      "matchDepTypes": ["golang", "toolchain"], // fast-track go and toolchain in their own PR
+      "groupName": "golang",
+      "rangeStrategy": "bump",
+      "schedule": ["at any time"],
+      "minimumReleaseAge": "0",
+    },
+    {
+      "matchManagers": ["gomod"],
+      "matchDepNames": ["go"],
+      "matchDepTypes": ["golang"],
+      "matchUpdateTypes": ["patch", "major"], // go minimum bumps on minor only
+      "enabled": false,
+    },
+    {
+      "matchManagers": ["dockerfile"],
+      "groupName": "Docker images",
+      "automerge": true
+    },
+    {
+      "matchManagers": ["npm"],
+      "groupName": "npm packages",
+      "automerge": true
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "automerge": true
+    }
+  ]
+}
