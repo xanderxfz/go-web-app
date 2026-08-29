@@ -1,0 +1,23 @@
+{{define "footer"}}
+<footer class="border-t mt-auto transition-colors duration-300" :class="$store.theme.dark ? 'border-white/10' : 'border-black/10'">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <svg class="h-6 w-6" :class="$store.theme.dark ? 'text-white/50' : 'text-black/50'" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60 8C48 8 42 14 42 20V36C42 36 30 36 24 42C18 48 18 56 24 62L30 68L24 92C22 100 28 108 36 108H84C92 108 98 100 96 92L90 68L96 62C102 56 102 48 96 42C90 36 78 36 78 36V20C78 14 72 8 60 8Z" fill="currentColor"/>
+                    <line x1="42" y1="46" x2="54" y2="58" stroke="black" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="54" y1="46" x2="42" y2="58" stroke="black" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="66" y1="46" x2="78" y2="58" stroke="black" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="78" y1="46" x2="66" y2="58" stroke="black" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M48 74L60 68L72 74" stroke="black" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="42" y="92" width="8" height="12" rx="2" fill="black"/>
+                    <rect x="52" y="92" width="8" height="12" rx="2" fill="black"/>
+                    <rect x="62" y="92" width="8" height="12" rx="2" fill="black"/>
+                </svg>
+                <span class="text-sm font-medium" :class="$store.theme.dark ? 'text-white/50' : 'text-black/50'">DEADDOG</span>
+            </div>
+            <p class="text-sm" :class="$store.theme.dark ? 'text-white/40' : 'text-black/40'">&copy; {{.Year}} DEADDOG. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+{{end}}

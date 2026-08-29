@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand: #000000;
+  --color-brand-light: #ffffff;
+  --color-brand-accent: #ffffff;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --border: rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(0, 0, 0, 0.02);
+}
+
+.dark {
+  --bg: #000000;
+  --fg: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.02);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--fg) 20%, transparent);
+  color: var(--fg);
+}
+
+[x-cloak] {
+  display: none !important;
+}

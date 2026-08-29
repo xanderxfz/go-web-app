@@ -1,0 +1,50 @@
+{{define "nav"}}
+<nav class="border-b sticky top-0 z-50 transition-colors duration-300" :class="$store.theme.dark ? 'border-white/10 bg-black/80' : 'border-black/10 bg-white/80'" style="backdrop-filter: blur(12px);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <svg class="h-8 w-8" :class="$store.theme.dark ? 'text-white' : 'text-black'" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60 8C48 8 42 14 42 20V36C42 36 30 36 24 42C18 48 18 56 24 62L30 68L24 92C22 100 28 108 36 108H84C92 108 98 100 96 92L90 68L96 62C102 56 102 48 96 42C90 36 78 36 78 36V20C78 14 72 8 60 8Z" fill="currentColor"/>
+                    <line x1="42" y1="46" x2="54" y2="58" stroke="black" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="54" y1="46" x2="42" y2="58" stroke="black" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="66" y1="46" x2="78" y2="58" stroke="black" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="78" y1="46" x2="66" y2="58" stroke="black" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M48 74L60 68L72 74" stroke="black" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="42" y="92" width="8" height="12" rx="2" fill="black"/>
+                    <rect x="52" y="92" width="8" height="12" rx="2" fill="black"/>
+                    <rect x="62" y="92" width="8" height="12" rx="2" fill="black"/>
+                </svg>
+                <span class="text-lg font-bold tracking-tight">DEADDOG</span>
+            </a>
+            <div class="hidden sm:flex items-center gap-8">
+                <a href="/" class="text-sm font-medium transition-colors" :class="({{.Active}} === 'home' ? ($store.theme.dark ? 'text-white' : 'text-black') : ($store.theme.dark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'))">Home</a>
+                <a href="/about" class="text-sm font-medium transition-colors" :class="({{.Active}} === 'about' ? ($store.theme.dark ? 'text-white' : 'text-black') : ($store.theme.dark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'))">About</a>
+                <button @click="$store.theme.toggle()" class="p-2 rounded-lg transition-colors" :class="$store.theme.dark ? 'text-white/70 hover:text-white hover:bg-white/10' : 'text-black/70 hover:text-black hover:bg-black/10'">
+                    <svg x-show="$store.theme.dark" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <svg x-show="!$store.theme.dark" x-cloak class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+            </div>
+            <button @click="mobileOpen = !mobileOpen" class="sm:hidden p-2" :class="$store.theme.dark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'">
+                <svg x-show="!mobileOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg x-show="mobileOpen" x-cloak class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div x-show="mobileOpen" x-cloak x-transition class="sm:hidden border-t px-4 pb-4 pt-2" :class="$store.theme.dark ? 'border-white/10' : 'border-black/10'">
+        <a href="/" class="block py-2 text-sm font-medium" :class="$store.theme.dark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'">Home</a>
+        <a href="/about" class="block py-2 text-sm font-medium" :class="$store.theme.dark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'">About</a>
+        <button @click="$store.theme.toggle()" class="mt-2 flex items-center gap-2 py-2 text-sm font-medium" :class="$store.theme.dark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'">
+            <span x-text="$store.theme.dark ? 'Light mode' : 'Dark mode'"></span>
+        </button>
+    </div>
+</nav>
+<style>[x-cloak] { display: none !important; }</style>
+{{end}}

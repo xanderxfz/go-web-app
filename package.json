@@ -1,0 +1,12 @@
+{
+  "name": "go-web-app",
+  "private": true,
+  "scripts": {
+    "dev": "bunx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "build:css": "bunx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.12",
+    "tailwindcss": "^4.1.12"
+  }
+}

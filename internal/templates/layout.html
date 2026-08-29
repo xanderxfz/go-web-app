@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}} | Go Web App</title>
+    <link rel="stylesheet" href="/static/css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="min-h-screen bg-black text-white dark:bg-black dark:text-white light:bg-white light:text-black" x-data="{ dark: $store.theme.dark }" :class="dark ? 'bg-black text-white' : 'bg-white text-black'">
+    <div x-data>
+        {{template "nav" .}}
+    </div>
+
+    <main>
+        {{template "content" .}}
+    </main>
+
+    {{template "footer" .}}
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('theme', {
+                dark: localStorage.getItem('theme') !== 'light',
+                toggle() {
+                    this.dark = !this.dark;
+                    localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+                    document.documentElement.classList.toggle('dark', this.dark);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
