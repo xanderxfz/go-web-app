@@ -60,6 +60,7 @@
       matchManagers: ['npm'],
       groupName: 'npm packages',
       automerge: true,
+      rangeStrategy: 'bump',
     },
     {
       matchManagers: ['github-actions'],
